@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { families, familySummary, isoDate, loadPosts, loadRepos, reposOf, slugOf, stageWord } from '../../lib/site';
+import { familyBySlug } from '../../lib/families';
+
+export async function getStaticPaths() {
+  return families.map((f) => ({ params: { slug: f.slug } }));
+}
+
+const f = familyBySlug(Astro.params.slug!)!;
+const index = families.indexOf(f);
+const { repos, fetchedAt } = await loadRepos();
+const mine = reposOf(repos, f);
+const s = familySummary(repos, f);
+const posts = (await loadPosts()).filter((p) => p.data.family === f.slug);
+---
+<Base title={`${f.name} · thinkmorestupidless`} description={f.thesis} asOf={fetchedAt}>
+  <div class="mono" style="display: flex; flex-wrap: wrap; gap: 8px 28px; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 13px; color: var(--muted)">
+    <span style={`color: ${f.colour === '#D9D3C6' ? 'var(--ink)' : f.colour}`}>{String(index + 1).padStart(2, '0')} {f.name}</span>
+    <a href="#repos" style="text-decoration: none">repositories</a>
+    <a href="#writing" style="text-decoration: none">writing</a>
+    {f.brain && <a href={`https://github.com/thinkmorestupidless/${f.brain}`} style="text-decoration: none">the brain</a>}
+  </div>
+
+  <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px; padding: 64px 0 48px 0">
+    <h1 class="display" style={`margin: 0; font-size: clamp(64px, 10vw, 112px); flex: 1 1 480px; min-width: 0; color: ${f.colour === '#D9D3C6' ? 'var(--ink)' : f.colour}`}>{f.name}</h1>
+    <div style="flex: 0 1 460px; display: flex; flex-direction: column; gap: 12px; padding-bottom: 8px">
+      <p style="margin: 0; font-size: 19px; line-height: 1.4">{f.thesis}</p>
+      <p class="mono muted" style="margin: 0; font-size: 12px; line-height: 1.7">{s.count} repositories · {s.stage} · latest {s.release} · last touched {s.touched || 'n/a'}</p>
+    </div>
+  </header>
+
+  <section id="repos" style="padding-top: 24px; border-top: 1px solid var(--ink)">
+    <div class="idx head"><span class="d">repository</span><span class="f">stage</span><span class="mono" style="font-size: 12px; color: var(--muted)">is</span><span class="r">release · last touched</span></div>
+    {mine.map((r) => (
+      <a class="idx" href={r.data.url || undefined} style={`--lite: ${f.colour === '#D9D3C6' ? '#16181A' : f.colour}; --deep: ${f.deep}`}>
+        <span class="d" style="color: var(--ink)"><span class:list={['dot', 'small', r.data.kind]} style="width: 14px; height: 14px; border-width: 4px; vertical-align: -2px; margin-right: 10px"></span>{r.data.name}</span>
+        <span class="f">{stageWord(r.data.kind, r.data.archived)}</span>
+        <span>{r.data.description || <span class="muted">no description on github</span>}</span>
+        <span class="r">{r.data.release || '–'} · {r.data.pushedAt || '–'}</span>
+      </a>
+    ))}
+  </section>
+
+  <section id="writing" style="margin-top: 56px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 12px; margin-bottom: 8px">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1; letter-spacing: -0.02em; font-weight: 700">writing about {f.name}</h2>
+      <a class="mono" href="/writing/" style="font-size: 12px; color: var(--muted); text-decoration: none">all writing →</a>
+    </div>
+    {posts.length === 0 && <p class="muted" style="font-size: 15px">Nothing yet.</p>}
+    {posts.map((p) => (
+      <a class="idx" href={`/writing/${slugOf(p)}/`}>
+        <span class="d">{isoDate(p.data.date)}</span>
+        <span class="f">{p.data.kind}</span>
+        <span>{p.data.title}</span>
+        <span class="r">{p.data.minutes} min</span>
+      </a>
+    ))}
+  </section>
+</Base>

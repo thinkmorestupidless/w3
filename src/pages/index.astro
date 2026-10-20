@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import FamilyBar from '../components/FamilyBar.astro';
+import { families, isoDate, loadPosts, loadRepos, slugOf } from '../lib/site';
+import { familyBySlug } from '../lib/families';
+
+const { repos, notShown, fetchedAt } = await loadRepos();
+const posts = await loadPosts();
+const latest = posts.slice(0, 3);
+const first = families[0];
+---
+<Base title="thinkmorestupidless" current="families" asOf={fetchedAt}>
+  <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding: 48px 0 36px 0">
+    <h1 class="display" style="margin: 0; font-size: clamp(48px, 7vw, 76px); flex: 1 1 520px">think more, stupid <span style="color: var(--red)">less.</span></h1>
+    <p style="margin: 0; flex: 0 1 380px; font-size: 15px; line-height: 1.45; color: var(--body)">Trevor. Six families of work, one poster each, and every circle a repository. Roll over a circle for what it is and where it stands. Nothing here was written for this site.</p>
+  </header>
+
+  <section id="families" class="bars">
+    {families.map((f, i) => <FamilyBar family={f} index={i} total={families.length} repos={repos} />)}
+    <div class="bar" style="--bar: var(--ink)">
+      <div class="meta"><b>writing</b><span>{posts.length} posts</span><span>latest {posts[0] ? isoDate(posts[0].data.date) : 'none'}</span></div>
+      <span class="word long"><a href="/writing/">writing</a></span>
+      <div style="position: absolute; left: 12px; right: 12px; top: 118px; display: flex; flex-direction: column; gap: 10px">
+        {latest.map((p) => (
+          <a href={`/writing/${slugOf(p)}/`} style="font-size: 12px; line-height: 1.3; border-top: 1px solid rgba(244,239,227,0.35); padding-top: 8px; text-decoration: none; color: var(--cream)">
+            <span class="mono" style="display: block; font-size: 10px; color: #9AA0A6; margin-bottom: 3px">{isoDate(p.data.date)} · {familyBySlug(p.data.family)?.name}</span>{p.data.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="tray" id="tray" aria-live="polite">
+    <div class="empty">Roll over or focus a circle. Each one is a repository on github.com/thinkmorestupidless; its shape is its status. {notShown} older repositories are not shown.</div>
+  </div>
+
+  <div class="legend" style={`--lite: ${first.lite}; --deep: ${first.deep}`}>
+    <span><i style="background: var(--lite)"></i>light, filled: released, has a tag</span>
+    <span><i style="background: transparent; border: 3px solid var(--deep)"></i>dark ring: no release yet</span>
+    <span><i style="background: linear-gradient(90deg, var(--lite) 50%, var(--deep) 50%)"></i>half: frozen</span>
+    <span><i style="background: transparent; border: 1px dashed var(--deep)"></i>dashed: private, named not shown</span>
+    <span><i style="box-shadow: inset 0 0 0 3px var(--lite); background: var(--deep)"></i>dark centre: produced by a release job</span>
+    <span>colours follow the family; light has shipped, dark has not</span>
+  </div>
+
+  <section class="captions">
+    {families.map((f) => <div><h2>{f.name}</h2><p>{f.thesis}</p></div>)}
+    <div><h2>writing</h2><p>Posts from this repository, one file each, tagged by family.</p></div>
+  </section>
+</Base>
+
+<script>
+  const tray = document.getElementById('tray')!;
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+  const show = (b: HTMLElement) => {
+    document.querySelectorAll('.dot.on').forEach((d) => d.classList.remove('on'));
+    b.classList.add('on');
+    const d = b.dataset;
+    const gh = d.url ? `<br><a class="mono" href="${esc(d.url)}" style="font-size: 12px; color: #9AA0A6">github ↗</a>` : '';
+    tray.innerHTML =
+      `<div><span class="k">repository</span><span class="name">${esc(d.name ?? '')}</span></div>` +
+      `<div><span class="k">is</span><span class="v">${esc(d.desc || 'no description on github')}</span></div>` +
+      `<div><span class="k">stage</span><span class="v mono">${esc(d.stage ?? '')}</span></div>` +
+      `<div><span class="k">release · last touched</span><span class="v mono">${esc(d.release ?? '')}<br>${esc(d.touched ?? '')}</span></div>` +
+      `<div><span class="k">family</span><span class="v"><a href="${esc(d.familyHref ?? '#')}">${esc(d.family ?? '')}</a>${gh}</span></div>`;
+  };
+  document.querySelectorAll<HTMLElement>('.dot[data-name]').forEach((b) => {
+    b.addEventListener('mouseenter', () => show(b));
+    b.addEventListener('focus', () => show(b));
+    b.addEventListener('click', () => show(b));
+  });
+</script>

@@ -1,0 +1,108 @@
+/* Tokens. Paper, ink and one red; every family brings its own colour. */
+:root {
+  --paper: #EFE9DC;
+  --cream: #F4EFE3;
+  --ink: #16181A;
+  --muted: #5C6166;
+  --body: #3E4347;
+  --rule: #D9D3C6;
+  --code: #E4DED0;
+  --red: #D83A12;
+  --sans: 'Bricolage Grotesque', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html { background: var(--paper); color: var(--ink); font-family: var(--sans); font-optical-sizing: auto; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--red); }
+.mono { font-family: var(--mono); }
+.muted { color: var(--muted); }
+code { font-family: var(--mono); font-size: 0.92em; background: var(--code); padding: 1px 5px; border-radius: 3px; }
+
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 16px 48px 16px; box-sizing: border-box; }
+@media (min-width: 720px) { .wrap { padding-left: 48px; padding-right: 48px; } }
+
+.display { font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; font-variation-settings: 'opsz' 96; }
+
+/* Navigation strip, on every page. */
+.nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px 32px; padding: 24px 0 20px 0; font-family: var(--mono); font-size: 13px; border-bottom: 1px solid var(--ink); }
+.nav a { text-decoration: none; }
+.nav a:hover, .nav a[aria-current="page"] { text-decoration: underline; color: var(--ink); }
+.nav .links { display: flex; flex-wrap: wrap; gap: 20px 28px; color: var(--muted); }
+
+.foot { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--ink); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.foot a { text-decoration: none; }
+.foot a:hover { text-decoration: underline; }
+
+/* A tall bar: a family on the home page, a post on the writing page. */
+.bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 720px) { .bars { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .bars { grid-template-columns: repeat(6, minmax(0, 1fr)) 0.55fr; } .bars.posts { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.bar { position: relative; height: 860px; overflow: hidden; display: block; color: var(--bar-text, var(--cream)); background: var(--bar, var(--ink)); text-decoration: none; }
+.bar.short { height: 760px; }
+.bar .meta { position: absolute; left: 14px; top: 14px; right: 14px; font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: 0.02em; display: flex; flex-direction: column; gap: 2px; }
+.bar .meta b { font-weight: 500; display: block; border-bottom: 1px solid currentColor; padding-bottom: 6px; margin-bottom: 6px; }
+.bar .word { position: absolute; left: 10px; bottom: 16px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 84px; line-height: 0.86; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; font-variation-settings: 'opsz' 96; white-space: nowrap; }
+.bar .word.long { font-size: 66px; }
+.bar .word a { text-decoration: none; }
+.bar .word a:hover { text-decoration: underline; text-decoration-thickness: 3px; color: inherit; }
+.bar .title { position: absolute; left: 10px; top: 118px; bottom: 200px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 46px; line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; overflow: hidden; }
+.bar .sum { position: absolute; left: 16px; right: 16px; bottom: 16px; font-size: 13px; line-height: 1.45; border-top: 1px solid currentColor; padding-top: 12px; }
+.bar .sum span { display: block; font-family: var(--mono); font-size: 10px; margin-top: 10px; opacity: 0.8; }
+a.bar:hover { color: var(--bar-text, var(--cream)); }
+a.bar:hover .title { text-decoration: underline; text-decoration-thickness: 3px; }
+
+/* Repository circles. Shape is the kind; colour is the family's tint or shade. */
+.dots { position: absolute; right: 16px; top: 118px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+.dot { width: 54px; height: 54px; border-radius: 50%; border: 0; padding: 0; margin: 0; cursor: pointer; background: var(--lite); position: relative; box-sizing: border-box; transition: transform .12s ease; display: inline-block; }
+.dot:hover, .dot.on { transform: scale(1.14); }
+.dot:focus-visible { outline: 3px solid var(--lite); outline-offset: 3px; }
+.dot.unreleased { background: transparent; border: 12px solid var(--deep); }
+.dot.private { background: transparent; border: 3px dashed var(--deep); }
+.dot.frozen { background: linear-gradient(90deg, var(--lite) 50%, var(--deep) 50%); }
+.dot.produced::after { content: ""; position: absolute; inset: 36%; border-radius: 50%; background: var(--deep); }
+.dot.small { width: 36px; height: 36px; }
+.dot.small.unreleased { border-width: 8px; }
+
+.tray { margin-top: 12px; background: var(--ink); color: var(--cream); display: grid; grid-template-columns: 1fr; gap: 16px 24px; padding: 22px 24px; min-height: 96px; box-sizing: border-box; }
+@media (min-width: 900px) { .tray { grid-template-columns: 220px 1fr 180px 180px 160px; } }
+.tray .k { font-family: var(--mono); font-size: 11px; color: #9AA0A6; display: block; margin-bottom: 6px; }
+.tray .v { font-size: 15px; line-height: 1.4; }
+.tray .name { font-family: var(--mono); font-size: 20px; font-weight: 500; }
+.tray a { color: inherit; }
+.tray a:hover { color: var(--cream); }
+.tray .empty { grid-column: 1 / -1; color: #9AA0A6; font-size: 15px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 16px; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; vertical-align: -2px; margin-right: 8px; box-sizing: border-box; }
+
+.captions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+@media (min-width: 720px) { .captions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .captions { grid-template-columns: repeat(6, minmax(0, 1fr)) 0.55fr; } }
+.captions div { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 1px solid var(--ink); padding-top: 12px; }
+.captions h2 { margin: 0; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+.captions p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--body); }
+
+/* Index rows on the writing page and the family pages. */
+.idx { display: grid; grid-template-columns: 110px 1fr; gap: 8px 24px; padding: 14px 0; border-bottom: 1px solid var(--rule); align-items: baseline; font-size: 16px; text-decoration: none; }
+@media (min-width: 720px) { .idx { grid-template-columns: 140px 130px 1fr 160px; } }
+.idx .d, .idx .f, .idx .r { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.idx .r { text-align: right; }
+.idx .f i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+.idx.head { border-bottom: 1px solid var(--ink); padding-bottom: 10px; }
+
+/* Reading. */
+.prose { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.prose p { margin: 0; font-size: 18px; line-height: 1.55; }
+.prose h2 { margin: 12px 0 0 0; font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.02em; color: var(--muted); }
+.prose h3 { margin: 8px 0 0 0; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em; }
+.prose pre { margin: 0; padding: 18px 20px; background: var(--ink); color: var(--cream); font-family: var(--mono); font-size: 13px; line-height: 1.6; overflow-x: auto; }
+.prose pre code { background: transparent; padding: 0; font-size: inherit; }
+.prose blockquote { margin: 0; padding: 0 0 0 22px; border-left: 3px solid var(--red); font-size: 22px; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; }
+.prose blockquote p { font-size: inherit; line-height: inherit; }
+.prose ul, .prose ol { margin: 0; padding-left: 22px; font-size: 18px; line-height: 1.55; display: flex; flex-direction: column; gap: 8px; }
+.prose hr { border: 0; border-top: 1px solid var(--ink); margin: 8px 0; }
+.col { font-family: var(--mono); font-size: 11px; line-height: 1.65; color: var(--body); }
+.col b { display: block; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.rep { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: center; font-family: var(--mono); font-size: 12px; line-height: 1.4; text-decoration: none; }

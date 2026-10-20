@@ -1,0 +1,18 @@
+---
+interface Props { current?: string; asOf?: string }
+const { current, asOf } = Astro.props;
+const links = [
+  ['families', '/#families'],
+  ['writing', '/writing/'],
+  ['videos', '/families/self-hosted-ai/'],
+  ['the honest list', '/honest/'],
+  ['about', '/about/'],
+];
+---
+<nav class="nav">
+  <a href="/" style="font-weight: 500">thinkmorestupidless</a>
+  <span class="links">
+    {links.map(([label, href]) => <a href={href} aria-current={current === label ? 'page' : undefined}>{label}</a>)}
+  </span>
+  <span class="muted">as of {asOf ?? new Date().toISOString().slice(0, 10)}</span>
+</nav>

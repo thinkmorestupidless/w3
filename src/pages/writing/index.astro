@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostBar from '../../components/PostBar.astro';
+import { families, isoDate, loadPosts, slugOf } from '../../lib/site';
+import { familyBySlug } from '../../lib/families';
+
+const posts = await loadPosts();
+const bars = posts.slice(0, 5);
+const rest = posts.slice(5);
+const counts = families.map((f) => [f, posts.filter((p) => p.data.family === f.slug).length] as const).filter(([, n]) => n > 0);
+---
+<Base title="writing · thinkmorestupidless" current="writing">
+  <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding: 48px 0 32px 0">
+    <h1 class="display" style="margin: 0; font-size: clamp(56px, 8vw, 96px); flex: 1 1 420px">writing</h1>
+    <div style="flex: 0 1 460px; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 15px; line-height: 1.45; color: var(--body)">One file per post in this repository, tagged by family. The five latest stand as bars; the rest are the index below. A post's colour is its family's.</p>
+      <div class="mono" style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12px; color: var(--muted)">
+        <span>all · {posts.length}</span>
+        {counts.map(([f, n]) => <a href={`/families/${f.slug}/#writing`} style="text-decoration: none">{f.name} · {n}</a>)}
+      </div>
+    </div>
+  </header>
+
+  {posts.length === 0 && <p class="muted" style="font-size: 15px">No posts yet. Add a markdown file under content/posts to begin.</p>}
+
+  <section class="bars posts">
+    {bars.map((p) => <PostBar post={p} short />)}
+  </section>
+
+  {rest.length > 0 && (
+    <section style="margin-top: 48px">
+      <div class="idx head"><span class="d">date</span><span class="f">family</span><span class="mono" style="font-size: 12px; color: var(--muted)">title</span><span class="r">kind · read</span></div>
+      {rest.map((p) => {
+        const f = familyBySlug(p.data.family);
+        return (
+          <a class="idx" href={`/writing/${slugOf(p)}/`}>
+            <span class="d">{isoDate(p.data.date)}</span>
+            <span class="f"><i style={`background: ${f?.colour}`}></i>{f?.name}</span>
+            <span>{p.data.title}</span>
+            <span class="r">{p.data.kind} · {p.data.minutes} min</span>
+          </a>
+        );
+      })}
+    </section>
+  )}
+</Base>

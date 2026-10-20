@@ -1,0 +1,88 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { isoDate, loadPosts, loadRepos, slugOf, stageWord } from '../../lib/site';
+import { familyBySlug } from '../../lib/families';
+
+export async function getStaticPaths() {
+  const posts = await loadPosts();
+  return posts.map((post, i) => ({ params: { slug: slugOf(post) }, props: { post, newer: posts[i - 1], older: posts[i + 1], index: posts.length - i, total: posts.length } }));
+}
+
+const { post, newer, older, index, total } = Astro.props;
+const { Content, headings } = await render(post);
+const f = familyBySlug(post.data.family)!;
+const { repos } = await loadRepos();
+const touched = post.data.repos.map((n) => repos.find((r) => r.data.name === n)).filter((r) => r !== undefined);
+const more = (await loadPosts()).filter((p) => p.id !== post.id).slice(0, 5);
+---
+<Base title={`${post.data.title} · thinkmorestupidless`} description={post.data.summary} current="writing">
+  <div class="mono" style="display: flex; flex-wrap: wrap; gap: 8px 28px; padding: 14px 0 0 0; font-size: 12px; color: var(--muted)">
+    <a href="/writing/" style="text-decoration: none">← writing</a>
+    <span>post {String(index).padStart(3, '0')} of {String(total).padStart(3, '0')}</span>
+    {newer && <a href={`/writing/${slugOf(newer)}/`} style="text-decoration: none">newer</a>}
+    {older && <a href={`/writing/${slugOf(older)}/`} style="text-decoration: none">older</a>}
+  </div>
+
+  <article class="post" style={`--bar: ${f.colour}; --bar-text: ${f.text}; --lite: ${f.lite}; --deep: ${f.deep}`}>
+    <div class="bar spine">
+      <div class="meta"><b>{isoDate(post.data.date)}</b><span>{f.name} · {post.data.kind}</span><span>{post.data.minutes} min</span></div>
+      <span class="title" style="bottom: 16px">{post.data.title}</span>
+    </div>
+
+    <aside style="display: flex; flex-direction: column; gap: 22px; padding-top: 6px">
+      <div class="col"><b>in one line</b>{post.data.summary}</div>
+      {touched.length > 0 && (
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div class="col"><b>repositories this touches</b></div>
+          {touched.map((r) => (
+            <a class="rep" href={r.data.url || `/families/${r.data.family}/`}>
+              <span class:list={['dot', 'small', r.data.kind]} style={`--lite: ${f.colour}; --deep: ${f.deep}`}></span>
+              <span>{r.data.name}<br /><span class="muted">{stageWord(r.data.kind, r.data.archived)}{r.data.release ? `, ${r.data.release}` : ''}</span></span>
+            </a>
+          ))}
+        </div>
+      )}
+      {headings.length > 0 && <div class="col"><b>in this post</b>{headings.filter((h) => h.depth <= 2).map((h) => <span>{h.text}<br /></span>)}</div>}
+      <div class="col"><b>source</b>content/posts/{post.id}.md<br /><a href={`https://github.com/thinkmorestupidless/www/blob/main/content/posts/${post.id}.md`}>edit on github</a></div>
+    </aside>
+
+    <div class="prose">
+      <h1 class="display" style="margin: 0 0 6px 0; font-size: clamp(40px, 5vw, 64px); line-height: 0.92">{post.data.title}</h1>
+      <Content />
+    </div>
+  </article>
+
+  {more.length > 0 && (
+    <section style="margin-top: 56px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 12px">
+        <h2 style="margin: 0; font-size: 28px; line-height: 1; letter-spacing: -0.02em; font-weight: 700">more writing</h2>
+        <a class="mono" href="/writing/" style="font-size: 12px; color: var(--muted); text-decoration: none">all {total} →</a>
+      </div>
+      <div class="next">
+        {more.map((p) => {
+          const g = familyBySlug(p.data.family)!;
+          return (
+            <a href={`/writing/${slugOf(p)}/`} style={`background: ${g.colour}; color: ${g.text}`}>
+              <span class="m">{isoDate(p.data.date)} · {g.name}</span>
+              <span class="t">{p.data.title}</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .post { display: grid; grid-template-columns: 1fr; gap: 24px; padding-top: 28px; align-items: start; }
+  @media (min-width: 900px) { .post { grid-template-columns: 200px 220px 1fr; gap: 12px 40px; } }
+  .spine { height: 420px; }
+  @media (min-width: 900px) { .spine { height: 860px; } }
+  .next { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (min-width: 900px) { .next { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .next a { position: relative; height: 300px; padding: 14px; box-sizing: border-box; text-decoration: none; display: block; overflow: hidden; }
+  .next a:hover { color: inherit; }
+  .next .m { font-family: var(--mono); font-size: 10px; line-height: 1.6; }
+  .next .t { position: absolute; left: 10px; top: 60px; bottom: 14px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 26px; line-height: 1; letter-spacing: -0.02em; font-weight: 800; overflow: hidden; }
+</style>

@@ -1,0 +1,127 @@
+# The families of work, in the order they appear. This file is the site's only hand-kept data.
+#
+# A repository belongs to a family if it carries the topic `family-<slug>` on GitHub, or if it is
+# named under `repos:` here. Both sources merge, so topics can take over from this list at any
+# time. A repository in neither place is not shown; there are about ninety of those.
+#
+# `produced:` names repositories that a release job pushes by subtree, never edited directly.
+# `private:` names repositories that exist but are not public: shown as a dashed circle, never
+# fetched. `lite` and `deep` are the family colour's tint and shade, used for the circles:
+# light has shipped, dark has not.
+
+owner: thinkmorestupidless
+
+families:
+  - slug: ankka
+    name: ankka
+    label: the platform
+    thesis: >-
+      A serverless application platform for agentic AI on the actor model. Akka's component
+      model, reimplemented in Scala 3 on Apache Pekko, so nothing on the path carries a BSL
+      licence. The rest of the family proves it by being its own customer.
+    colour: "#D83A12"
+    text: "#F4EFE3"
+    lite: "#FFC9B5"
+    deep: "#7A1E07"
+    brain: ankka-brain
+    repos:
+      - ankka
+      - ankka-flow
+      - ankka-reasoning
+      - ankka-contrib
+      - ankka-satisfaction
+      - ankka-experiment-proposals
+      - cloudflow
+    produced:
+      - ankka.g8
+      - ankka-action
+      - ankka-marketplace
+      - homebrew-tap
+
+  - slug: voice
+    name: voice
+    label: civic participation
+    thesis: >-
+      A person talks to it, in private, about what matters to them. What they choose to share
+      joins what everyone else is saying, and the people elected to act on it see it and answer.
+      A political system that can finally listen. Built on ankka, as its customer.
+    colour: "#1F5FA8"
+    text: "#F4EFE3"
+    lite: "#BFD6F2"
+    deep: "#0D2E57"
+    brain: voice-brain
+    repos:
+      - voice
+      - voice-website
+
+  - slug: brains
+    name: brains
+    label: context for people and agents
+    thesis: >-
+      One small repository per family that holds what a person or an agent needs before touching
+      the work: the map, the pins, the decisions and why, the traps and the voice. One source,
+      many references. This site is one more consumer of them.
+    colour: "#5B7A2E"
+    text: "#F4EFE3"
+    lite: "#D5E6B5"
+    deep: "#2C3F14"
+    repos:
+      - ankka-brain
+      - voice-brain
+      - speckit-bdd
+      - claude-marketplace
+    private:
+      - name: ankka-brain-private
+        description: extends ankka-brain with the installations and the hosted product; named here, not shown
+
+  - slug: betting
+    name: betting
+    label: numbers against a market
+    thesis: >-
+      Libraries and services around the Betfair exchange: the API clients, the data schemas and
+      the experiments that use them. Honest signal only; a record carries its method and its
+      caveat or it is not shown.
+    colour: "#16181A"
+    text: "#F2B134"
+    lite: "#F2B134"
+    deep: "#7A5A12"
+    repos:
+      - less-stupid-betting
+      - less-stupid-betfair
+      - betfair-akka
+      - opta-data-schemae
+      - premier-league-chat
+      - sms-horse-tips
+      - play-ws-betfair
+
+  - slug: self-hosted-ai
+    name: self-hosted ai
+    label: videos, planned
+    thesis: >-
+      Running models on hardware you own, shown end to end on video: what to buy, what it can and
+      cannot run, what it costs to keep on, and what breaks. Private by default, as everything
+      else here.
+    colour: "#6B4FBB"
+    text: "#F4EFE3"
+    lite: "#D9CCF5"
+    deep: "#2F1F5E"
+    repos:
+      - Pi-Akka-Cluster
+
+  - slug: odds-and-ends
+    name: odds & ends
+    label: made because they were fun
+    thesis: >-
+      Smaller things that stand on their own. Some shipped, some stopped when they had answered
+      their question. Kept because they show the hands, not just the platform.
+    colour: "#D9D3C6"
+    text: "#16181A"
+    lite: "#16181A"
+    deep: "#8F8A7E"
+    repos:
+      - PaintingByNumbersIFY
+      - terraform-provider-akka
+      - energy-monitoring-manufacturing-demo
+      - papercast
+      - building-modern-software-systems
+      - setup-akka-cli-action

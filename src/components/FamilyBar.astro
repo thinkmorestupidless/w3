@@ -1,0 +1,39 @@
+---
+/** One family as a tall bar with a status circle per repository. */
+import type { Family } from '../lib/families';
+import { familySummary, reposOf, stageWord, type RepoEntry } from '../lib/site';
+
+interface Props { family: Family; index: number; total: number; repos: RepoEntry[] }
+const { family, index, total, repos } = Astro.props;
+const mine = reposOf(repos, family);
+const s = familySummary(repos, family);
+const n = String(index + 1).padStart(2, '0');
+const long = family.name.length > 7;
+---
+<div class="bar" style={`--bar: ${family.colour}; --bar-text: ${family.text}; --lite: ${family.lite}; --deep: ${family.deep}`}>
+  <div class="meta">
+    <b>{n} / {String(total).padStart(2, '0')}</b>
+    <span>{family.label}</span>
+    <span>{s.stage}</span>
+    <span>{s.release}</span>
+    <span>{s.touched || 'no date'}</span>
+  </div>
+  <span class:list={['word', { long }]}><a href={`/families/${family.slug}/`}>{family.name}</a></span>
+  <div class="dots">
+    {mine.map((r) => (
+      <button
+        type="button"
+        class:list={['dot', r.data.kind]}
+        aria-label={r.data.name}
+        data-name={r.data.name}
+        data-desc={r.data.description}
+        data-stage={stageWord(r.data.kind, r.data.archived)}
+        data-release={r.data.release || (r.data.kind === 'produced' ? 'follows its source' : 'none')}
+        data-touched={r.data.pushedAt || 'not shown'}
+        data-family={family.name}
+        data-family-href={`/families/${family.slug}/`}
+        data-url={r.data.url}
+      ></button>
+    ))}
+  </div>
+</div>
