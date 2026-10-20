@@ -36,6 +36,8 @@ export type RepoConfig = {
   description?: string;
   kind?: 'produced' | 'frozen';
   order?: number;
+  /** ISO date shown as last touched instead of pushed-at, for when the last push was not work. */
+  touched?: string;
 };
 
 type ApiRepo = {
@@ -165,7 +167,7 @@ export const readCatalogue = async (): Promise<Catalogue> => {
       kind,
       release: rel?.tag ?? '',
       releasedAt: rel?.at ?? '',
-      pushedAt: r.pushed_at.slice(0, 10),
+      pushedAt: (cfg?.touched ? String(cfg.touched) : r.pushed_at).slice(0, 10),
       archived: r.archived,
       order,
       source,

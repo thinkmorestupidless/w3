@@ -21,6 +21,7 @@ This repository is the site for `thinkmorestupidless`. Fork it, change `w3.yaml`
   description: ...       # optional; replaces the GitHub description on the site
   kind: produced         # optional; produced (pushed by a release job) or frozen; else derived
   order: 0               # optional; position within the family, lowest is the family's root
+  touched: 2023-08-22    # optional; shown as last touched when the last push was not work
   ```
 
   The site's `w3.yaml` can also name repositories under a family's `repos:`, `produced:` and

@@ -2,7 +2,7 @@
 # the site itself, then the families of work in the order they appear.
 #
 # A repository joins a family by carrying its own `w3.yaml` at the root of its default branch
-# (`family: <slug>`, optionally `description`, `kind: produced | frozen` and `order`). The lists
+# (`family: <slug>`, optionally `description`, `kind: produced | frozen`, `order` and `touched`). The lists
 # here are for repositories that cannot carry one: `repos:` for ones you would rather not edit,
 # in order, the first being the family's root; `produced:` for ones a release job pushes by
 # subtree; `private:` for ones that exist but are not public, shown as a dashed circle, never
