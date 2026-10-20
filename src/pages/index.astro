@@ -12,7 +12,7 @@ const first = families[0];
 <Base title={site.title} current="families" asOf={fetchedAt}>
   <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding: 48px 0 36px 0">
     <h1 class="display" style="margin: 0; font-size: clamp(48px, 7vw, 76px); flex: 1 1 520px">{site.wordmark} <span style="color: var(--red)">{site.accent}</span></h1>
-    <p style="margin: 0; flex: 0 1 380px; font-size: 15px; line-height: 1.45; color: var(--body)">{site.intro}</p>
+    {site.intro && <p style="margin: 0; flex: 0 1 380px; font-size: 15px; line-height: 1.45; color: var(--body)">{site.intro}</p>}
   </header>
 
   <section id="families" class="bars" style={`--families: ${families.length}`}>

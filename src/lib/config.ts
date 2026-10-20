@@ -28,7 +28,7 @@ export type Site = {
   title: string;
   wordmark: string;
   accent: string;
-  intro: string;
+  intro?: string;
   description: string;
   nav: Link[];
   links: Link[];

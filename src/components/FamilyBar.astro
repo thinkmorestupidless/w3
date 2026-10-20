@@ -9,6 +9,11 @@ const mine = reposOf(repos, family);
 const s = familySummary(repos, family);
 const n = String(index + 1).padStart(2, '0');
 const long = family.name.length > 7;
+// One column holds eleven circles above the bar's foot. Past that, the private ones stand in a
+// second stack to the left, so the public column keeps its size.
+const fits = 11;
+const two = mine.length > fits;
+const stacks = two ? [mine.filter((r) => r.data.kind === 'private'), mine.filter((r) => r.data.kind !== 'private')] : [mine];
 ---
 <div class="bar" style={`--bar: ${family.colour}; --bar-text: ${family.text}; --lite: ${family.lite}; --deep: ${family.deep}`}>
   <div class="meta">
@@ -20,7 +25,8 @@ const long = family.name.length > 7;
   </div>
   <span class:list={['word', { long }]}><a href={`/families/${family.slug}/`}>{family.name}</a></span>
   <div class="dots">
-    {mine.map((r) => (
+    {stacks.map((stack) => <div class="stack">
+    {stack.map((r) => (
       <button
         type="button"
         class:list={['dot', r.data.kind]}
@@ -35,5 +41,6 @@ const long = family.name.length > 7;
         data-url={r.data.url}
       ></button>
     ))}
+    </div>)}
   </div>
 </div>

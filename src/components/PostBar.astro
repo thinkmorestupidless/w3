@@ -7,7 +7,7 @@ interface Props { post: PostEntry; short?: boolean }
 const { post, short = false } = Astro.props;
 const f = familyBySlug(post.data.family);
 ---
-<a class:list={['bar', { short }]} href={`/writing/${slugOf(post)}/`} style={`--bar: ${f?.colour ?? '#16181A'}; --bar-text: ${f?.text ?? '#F4EFE3'}`}>
+<a class:list={['bar', 'post', { short }]} href={`/writing/${slugOf(post)}/`} style={`--bar: ${f?.colour ?? '#16181A'}; --bar-text: ${f?.text ?? '#F4EFE3'}`}>
   <div class="meta"><b>{isoDate(post.data.date)}</b><span>{f?.name} · {post.data.kind}</span><span>{post.data.minutes} min</span></div>
   <span class="title">{post.data.title}</span>
   <p class="sum">{post.data.summary}<span>read →</span></p>

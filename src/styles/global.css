@@ -50,11 +50,17 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--code); pad
 .bar .title { position: absolute; left: 10px; top: 118px; bottom: 200px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 46px; line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; overflow: hidden; }
 .bar .sum { position: absolute; left: 16px; right: 16px; bottom: 16px; font-size: 13px; line-height: 1.45; border-top: 1px solid currentColor; padding-top: 12px; }
 .bar .sum span { display: block; font-family: var(--mono); font-size: 10px; margin-top: 10px; opacity: 0.8; }
+/* A post bar lays out in flow: the title takes the height the summary leaves it. */
+.bar.post { display: flex; flex-direction: column; }
+.bar.post .meta { position: static; margin: 14px 14px 0 14px; }
+.bar.post .title { position: static; flex: 1 1 auto; min-height: 0; margin: 28px 0 24px 10px; }
+.bar.post .sum { position: static; margin: 0 16px 16px 16px; }
 a.bar:hover { color: var(--bar-text, var(--cream)); }
 a.bar:hover .title { text-decoration: underline; text-decoration-thickness: 3px; }
 
 /* Repository circles. Shape is the kind; colour is the family's tint or shade. */
-.dots { position: absolute; right: 16px; top: 118px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+.dots { position: absolute; right: 16px; top: 118px; display: flex; gap: 12px; align-items: flex-start; }
+.dots .stack { display: flex; flex-direction: column; gap: 12px; }
 .dot { width: 54px; height: 54px; border-radius: 50%; border: 0; padding: 0; margin: 0; cursor: pointer; background: var(--lite); position: relative; box-sizing: border-box; transition: transform .12s ease; display: inline-block; }
 .dot:hover, .dot.on { transform: scale(1.14); }
 .dot:focus-visible { outline: 3px solid var(--lite); outline-offset: 3px; }

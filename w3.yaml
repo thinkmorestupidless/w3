@@ -19,9 +19,7 @@ site:
   title: thinkmorestupidless
   wordmark: "think more, stupid"      # the big line on the home page ...
   accent: "less."                     # ... and the word of it set in the accent colour
-  intro: >-
-    Trevor. Six families of work, one poster each, and every circle a repository. Roll over a
-    circle for what it is and where it stands. Nothing here was written for this site.
+  # intro: an optional paragraph beside the wordmark
   description: "thinkmorestupidless: six families of work, rendered from GitHub."
   nav:
     - { label: families, href: "/#families" }
