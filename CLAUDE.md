@@ -23,8 +23,6 @@ Justfile, push-to-main deploys here instead of tags, sentence-case declarative c
   shipped, dark means not; keep the circle vocabulary in `global.css` and the legend on the home
   page in step.
 - British spelling in prose, lower-case family names, no exclamation marks.
-- Posts are written in the voice in `content/tone-of-voice.md`; read it before writing or editing
-  one. Docs and READMEs in the repositories keep the family's plain register.
 
 ## Traps
 Dated, flat statements of what cost time. Add one the day it does.
