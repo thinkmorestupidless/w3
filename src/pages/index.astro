@@ -15,7 +15,7 @@ const first = families[0];
     <p style="margin: 0; flex: 0 1 380px; font-size: 15px; line-height: 1.45; color: var(--body)">{site.intro}</p>
   </header>
 
-  <section id="families" class="bars">
+  <section id="families" class="bars" style={`--families: ${families.length}`}>
     {families.map((f, i) => <FamilyBar family={f} index={i} total={families.length} repos={repos} />)}
     <div class="bar" style="--bar: var(--ink)">
       <div class="meta"><b>writing</b><span>{posts.length} posts</span><span>latest {posts[0] ? isoDate(posts[0].data.date) : 'none'}</span></div>
@@ -43,7 +43,7 @@ const first = families[0];
     <span>colours follow the family; light has shipped, dark has not</span>
   </div>
 
-  <section class="captions">
+  <section class="captions" style={`--families: ${families.length}`}>
     {families.map((f) => <div><h2>{f.name}</h2><p>{f.thesis}</p></div>)}
     <div><h2>writing</h2><p>Posts from this repository, one file each, tagged by family.</p></div>
   </section>

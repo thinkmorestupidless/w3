@@ -38,7 +38,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--code); pad
 /* A tall bar: a family on the home page, a post on the writing page. */
 .bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 @media (min-width: 720px) { .bars { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .bars { grid-template-columns: repeat(6, minmax(0, 1fr)) 0.55fr; } .bars.posts { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .bars { grid-template-columns: repeat(var(--families, 6), minmax(0, 1fr)) 0.55fr; } .bars.posts { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 .bar { position: relative; height: 860px; overflow: hidden; display: block; color: var(--bar-text, var(--cream)); background: var(--bar, var(--ink)); text-decoration: none; }
 .bar.short { height: 760px; }
 .bar .meta { position: absolute; left: 14px; top: 14px; right: 14px; font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: 0.02em; display: flex; flex-direction: column; gap: 2px; }
@@ -79,7 +79,7 @@ a.bar:hover .title { text-decoration: underline; text-decoration-thickness: 3px;
 
 .captions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
 @media (min-width: 720px) { .captions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .captions { grid-template-columns: repeat(6, minmax(0, 1fr)) 0.55fr; } }
+@media (min-width: 1100px) { .captions { grid-template-columns: repeat(var(--families, 6), minmax(0, 1fr)) 0.55fr; } }
 .captions div { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 1px solid var(--ink); padding-top: 12px; }
 .captions h2 { margin: 0; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
 .captions p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--body); }

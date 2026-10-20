@@ -60,6 +60,13 @@ families:
       - ankka-action
       - ankka-marketplace
       - homebrew-tap
+    private:
+      - name: the hosted product
+        description: turns a stranger into a customer with an organization on an installation
+      - name: the infrastructure
+        description: where installations live; owns the registry and the release identity
+      - name: replication
+        description: event sourced entities replicated across installations; the paid half of a seam the platform defines
 
   - slug: voice
     name: voice
@@ -117,20 +124,6 @@ families:
       - sms-horse-tips
       - play-ws-betfair
 
-  - slug: self-hosted-ai
-    name: self-hosted ai
-    label: videos, planned
-    thesis: >-
-      Running models on hardware you own, shown end to end on video: what to buy, what it can and
-      cannot run, what it costs to keep on, and what breaks. Private by default, as everything
-      else here.
-    colour: "#6B4FBB"
-    text: "#F4EFE3"
-    lite: "#D9CCF5"
-    deep: "#2F1F5E"
-    repos:
-      - Pi-Akka-Cluster
-
   - slug: odds-and-ends
     name: odds & ends
     label: made because they were fun
@@ -142,9 +135,25 @@ families:
     lite: "#16181A"
     deep: "#8F8A7E"
     repos:
-      - PaintingByNumbersIFY
-      - terraform-provider-akka
-      - energy-monitoring-manufacturing-demo
       - papercast
-      - building-modern-software-systems
-      - setup-akka-cli-action
+      - energy-monitoring-manufacturing-demo
+      - PaintingByNumbersIFY
+      - superset-langchain-demo
+      - processing-sphere-particles
+      - may-thy-knife-chip-and-shatter
+      - bennyhillmachine
+      - jep-visualiser
+
+  - slug: self-hosted-ai
+    name: self-hosted ai
+    label: videos, planned
+    thesis: >-
+      Running models on hardware you own, shown end to end on video: what to buy, what it can and
+      cannot run, what it costs to keep on, and what breaks. Private by default, as everything
+      else here.
+    colour: "#6B4FBB"
+    text: "#F4EFE3"
+    lite: "#D9CCF5"
+    deep: "#2F1F5E"
+    repos: []
+
