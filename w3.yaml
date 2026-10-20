@@ -20,7 +20,7 @@ site:
   wordmark: "think more, stupid"      # the big line on the home page ...
   accent: "less."                     # ... and the word of it set in the accent colour
   # intro: an optional paragraph beside the wordmark
-  description: "thinkmorestupidless: six families of work, rendered from GitHub."
+  description: "thinkmorestupidless: five families of work, rendered from GitHub."
   nav:
     - { label: families, href: "/#families" }
     - { label: writing, href: "/writing/" }
@@ -51,6 +51,7 @@ families:
       - ankka-contrib
       - ankka-satisfaction
       - ankka-experiment-proposals
+      - ankka-brain
     produced:
       - ankka.g8
       - ankka-action
@@ -63,6 +64,8 @@ families:
         description: where installations live; owns the registry and the release identity
       - name: replication
         description: event sourced entities replicated across installations; the paid half of a seam the platform defines
+      - name: ankka-brain-private
+        description: extends ankka-brain with the installations and the hosted product; named here, not shown
 
   - slug: voice
     name: voice
@@ -79,26 +82,7 @@ families:
     repos:
       - voice
       - voice-website
-
-  - slug: brains
-    name: brains
-    label: context for people and agents
-    thesis: >-
-      One small repository per family that holds what a person or an agent needs before touching
-      the work: the map, the pins, the decisions and why, the traps and the voice. One source,
-      many references. This site is one more consumer of them.
-    colour: "#5B7A2E"
-    text: "#F4EFE3"
-    lite: "#D5E6B5"
-    deep: "#2C3F14"
-    repos:
-      - ankka-brain
       - voice-brain
-      - speckit-bdd
-      - claude-marketplace
-    private:
-      - name: ankka-brain-private
-        description: extends ankka-brain with the installations and the hosted product; named here, not shown
 
   - slug: betting
     name: betting
@@ -139,6 +123,8 @@ families:
       - processing-sphere-particles
       - bennyhillmachine
       - jep-visualiser
+      - speckit-bdd
+      - claude-marketplace
 
   - slug: self-hosted-ai
     name: self-hosted ai
