@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../lib/config';
 import { families } from '../lib/site';
 ---
-<Base title="the honest list · thinkmorestupidless" current="the honest list">
+<Base title={`the honest list · ${site.title}`} current="the honest list">
   <header style="padding: 48px 0 24px 0">
     <h1 class="display" style="margin: 0; font-size: clamp(48px, 7vw, 76px)">the honest list</h1>
     <p style="margin: 16px 0 0 0; font-size: 15px; color: var(--body); max-width: 640px">What is not built, not promised and not done. Every repository keeps one; this page will collect them once the build reads each family's limitations page.</p>

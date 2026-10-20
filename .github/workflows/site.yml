@@ -1,7 +1,7 @@
 name: site
 
 # The site rebuilds on a push here, when a family's release job sends a repository_dispatch,
-# every six hours as a safety net for topic edits and pushes elsewhere, and by hand.
+# every six hours as a safety net for pushes and new w3.yaml files elsewhere, and by hand.
 on:
   push:
     branches: [main]

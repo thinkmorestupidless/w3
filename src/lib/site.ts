@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { families, type Family } from './families';
+import { families, site, type Family } from './config';
 
 export type RepoEntry = Awaited<ReturnType<typeof getCollection<'repos'>>>[number];
 export type PostEntry = Awaited<ReturnType<typeof getCollection<'posts'>>>[number];
@@ -29,8 +29,9 @@ export const reposOf = (repos: RepoEntry[], family: Family) => repos.filter((r) 
 export const familySummary = (repos: RepoEntry[], family: Family) => {
   const mine = reposOf(repos, family).filter((r) => r.data.kind !== 'private');
   const released = mine.filter((r) => r.data.kind === 'released');
-  // The family's headline release is its root repository's: the first one families.yaml names.
-  const root = family.repos[0];
+  // The family's headline release is its root repository's: the lowest `order`, which is the
+  // first one the site's w3.yaml names or the repository whose own w3.yaml says `order: 0`.
+  const root = mine.slice().sort((a, b) => a.data.order - b.data.order)[0]?.data.name;
   const latest = released.find((r) => r.data.name === root) ?? released.sort((a, b) => b.data.releasedAt.localeCompare(a.data.releasedAt))[0];
   const touched = mine.map((r) => r.data.pushedAt).sort().reverse()[0] ?? '';
   const stage = mine.length === 0 ? '○ designing' : released.length > 0 ? '● released' : '◐ building';
@@ -41,4 +42,4 @@ export const isoDate = (d: Date): string => d.toISOString().slice(0, 10);
 
 export const slugOf = (post: PostEntry): string => post.id.replace(/^\d{4}-\d{2}-\d{2}-/, '');
 
-export { families };
+export { families, site };

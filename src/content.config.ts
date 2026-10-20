@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { families } from './lib/families';
+import { families } from './lib/config';
 import { readCatalogue } from './lib/github';
 
 const familySlugs = families.map((f) => f.slug) as [string, ...string[]];
@@ -26,7 +26,7 @@ const repos = defineCollection({
     const { repos, notShown, fetchedAt } = await readCatalogue();
     return [
       ...repos.map((r) => ({ id: r.name, ...r })),
-      { id: '__meta', name: '__meta', family: '', description: '', url: '', kind: 'private', release: '', releasedAt: '', pushedAt: '', archived: false, topics: [], notShown, fetchedAt },
+      { id: '__meta', name: '__meta', family: '', description: '', url: '', kind: 'private', release: '', releasedAt: '', pushedAt: '', archived: false, order: 0, source: 'site', notShown, fetchedAt },
     ];
   },
   schema: z.object({
@@ -39,7 +39,8 @@ const repos = defineCollection({
     releasedAt: z.string(),
     pushedAt: z.string(),
     archived: z.boolean(),
-    topics: z.array(z.string()),
+    order: z.number(),
+    source: z.enum(['repo', 'site']),
     notShown: z.number().optional(),
     fetchedAt: z.string().optional(),
   }),

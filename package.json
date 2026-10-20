@@ -1,9 +1,9 @@
 {
-  "name": "www",
+  "name": "w3",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "thinkmorestupidless.com: a static site rendered from GitHub",
+  "description": "w3: render a GitHub account as a static website",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

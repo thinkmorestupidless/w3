@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../lib/config';
 ---
-<Base title="about · thinkmorestupidless" current="about">
+<Base title={`about · ${site.title}`} current="about">
   <header style="padding: 48px 0 24px 0">
     <h1 class="display" style="margin: 0; font-size: clamp(48px, 7vw, 76px)">about</h1>
   </header>
   <div class="prose" style="max-width: 720px">
-    <p>Trevor Burton-McCreadie. thinkmorestupidless is one person and the families of work that person keeps.</p>
+    <p>[Who this account is, in a sentence.]</p>
     <p>This site is rendered from GitHub. The families, their repositories, their releases and when they were last touched are read at build time; the writing is markdown in the site's own repository. When a family tags a release, the site redraws itself.</p>
     <h2>what this is not</h2>
     <p>[Your own honest list: what you do not do, have stopped doing, or are not good at, in the same register as every repo's limitations page.]</p>

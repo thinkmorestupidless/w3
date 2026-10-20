@@ -1,15 +1,38 @@
-# The families of work, in the order they appear. This file is the site's only hand-kept data.
+# w3 renders a GitHub account as a static website. This file is the site's only hand-kept data:
+# the site itself, then the families of work in the order they appear.
 #
-# A repository belongs to a family if it carries the topic `family-<slug>` on GitHub, or if it is
-# named under `repos:` here. Both sources merge, so topics can take over from this list at any
-# time. A repository in neither place is not shown; there are about ninety of those.
+# A repository joins a family by carrying its own `w3.yaml` at the root of its default branch
+# (`family: <slug>`, optionally `description`, `kind: produced | frozen` and `order`). The lists
+# here are for repositories that cannot carry one: `repos:` for ones you would rather not edit,
+# in order, the first being the family's root; `produced:` for ones a release job pushes by
+# subtree; `private:` for ones that exist but are not public, shown as a dashed circle, never
+# fetched. A repository in no family is counted, not shown.
 #
-# `produced:` names repositories that a release job pushes by subtree, never edited directly.
-# `private:` names repositories that exist but are not public: shown as a dashed circle, never
-# fetched. `lite` and `deep` are the family colour's tint and shade, used for the circles:
-# light has shipped, dark has not.
+# `lite` and `deep` are the family colour's tint and shade, used for the circles: light has
+# shipped, dark has not.
 
-owner: thinkmorestupidless
+site:
+  owner: thinkmorestupidless          # the GitHub account rendered: a user or an organisation
+  repo: w3                            # the repository this site is built from; used for edit links
+  url: https://thinkmorestupidless.com
+  domain: thinkmorestupidless.com     # written to dist/CNAME for GitHub Pages; remove for none
+  title: thinkmorestupidless
+  wordmark: "think more, stupid"      # the big line on the home page ...
+  accent: "less."                     # ... and the word of it set in the accent colour
+  intro: >-
+    Trevor. Six families of work, one poster each, and every circle a repository. Roll over a
+    circle for what it is and where it stands. Nothing here was written for this site.
+  description: "thinkmorestupidless: six families of work, rendered from GitHub."
+  nav:
+    - { label: families, href: "/#families" }
+    - { label: writing, href: "/writing/" }
+    - { label: the honest list, href: "/honest/" }
+    - { label: about, href: "/about/" }
+  links:
+    - { label: github, href: "https://github.com/thinkmorestupidless" }
+    - { label: rss, href: "/rss.xml" }
+    - { label: email, href: "mailto:trevor@thinkmorestupidless.com" }
+    - { label: "eitheror, the other company", href: "https://eitheror.io" }
 
 families:
   - slug: ankka

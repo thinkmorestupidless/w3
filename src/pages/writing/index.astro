@@ -1,15 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PostBar from '../../components/PostBar.astro';
-import { families, isoDate, loadPosts, slugOf } from '../../lib/site';
-import { familyBySlug } from '../../lib/families';
+import { families, isoDate, loadPosts, site, slugOf } from '../../lib/site';
+import { familyBySlug } from '../../lib/config';
 
 const posts = await loadPosts();
 const bars = posts.slice(0, 5);
 const rest = posts.slice(5);
 const counts = families.map((f) => [f, posts.filter((p) => p.data.family === f.slug).length] as const).filter(([, n]) => n > 0);
 ---
-<Base title="writing · thinkmorestupidless" current="writing">
+<Base title={`writing · ${site.title}`} current="writing">
   <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding: 48px 0 32px 0">
     <h1 class="display" style="margin: 0; font-size: clamp(56px, 8vw, 96px); flex: 1 1 420px">writing</h1>
     <div style="flex: 0 1 460px; display: flex; flex-direction: column; gap: 14px">

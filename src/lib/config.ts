@@ -1,5 +1,5 @@
 import { parse } from 'yaml';
-import raw from '../../families.yaml?raw';
+import raw from '../../w3.yaml?raw';
 
 export type PrivateRepo = { name: string; description: string };
 
@@ -18,11 +18,29 @@ export type Family = {
   private: PrivateRepo[];
 };
 
-type FamiliesFile = { owner: string; families: Array<Partial<Family> & { slug: string; name: string }> };
+export type Link = { label: string; href: string };
 
-const file = parse(raw) as FamiliesFile;
+export type Site = {
+  owner: string;
+  repo: string;
+  url: string;
+  domain?: string;
+  title: string;
+  wordmark: string;
+  accent: string;
+  intro: string;
+  description: string;
+  nav: Link[];
+  links: Link[];
+};
 
-export const owner: string = file.owner;
+type ConfigFile = { site: Site; families: Array<Partial<Family> & { slug: string; name: string }> };
+
+const file = parse(raw) as ConfigFile;
+
+export const site: Site = { nav: [], links: [], ...file.site };
+
+export const owner: string = site.owner;
 
 export const families: Family[] = file.families.map((f) => ({
   slug: f.slug,
@@ -40,6 +58,3 @@ export const families: Family[] = file.families.map((f) => ({
 }));
 
 export const familyBySlug = (slug: string): Family | undefined => families.find((f) => f.slug === slug);
-
-/** Topic that claims a repository for a family, e.g. `family-ankka`. */
-export const familyTopic = (slug: string): string => `family-${slug}`;
