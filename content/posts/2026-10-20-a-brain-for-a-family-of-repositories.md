@@ -29,6 +29,55 @@ I had also tried, back in May, a company-wide brain that was meant to cover ever
 
 On 30 September 2026 the ankka family got `ankka-brain`: a repository checked out beside the others, holding only what has no single-repository home. It is plain markdown in git. There is no tooling, no generator, no database.
 
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 568" role="img" style="font-family: var(--mono); font-size: 13px; fill: var(--ink)">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill: var(--red)"/></marker></defs>
+<text x="16" y="33" xml:space="preserve"><tspan xml:space="preserve">ankka-brain/</tspan></text>
+<text x="16" y="55" xml:space="preserve"><tspan xml:space="preserve">├── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="282.9" y="55" xml:space="preserve" style="fill: var(--muted)">agent context: what is always on, what to load when</text>
+<text x="16" y="77" xml:space="preserve"><tspan xml:space="preserve">├── README.md</tspan></text>
+<text x="282.9" y="77" xml:space="preserve" style="fill: var(--muted)">what lives here, what does not, the maintenance ritual</text>
+<text x="16" y="99" xml:space="preserve"><tspan xml:space="preserve">├── family.md</tspan></text>
+<text x="282.9" y="99" xml:space="preserve" style="fill: var(--muted)">the map: thesis, roles, the dependency and pinning chain</text>
+<text x="16" y="121" xml:space="preserve"><tspan xml:space="preserve">├── principles.md</tspan></text>
+<text x="282.9" y="121" xml:space="preserve" style="fill: var(--muted)">beliefs that show up in real decisions, and where each bites</text>
+<text x="16" y="143" xml:space="preserve"><tspan xml:space="preserve">├── conventions.md</tspan></text>
+<text x="282.9" y="143" xml:space="preserve" style="fill: var(--muted)">how every repository is built, tested and released</text>
+<text x="16" y="165" xml:space="preserve"><tspan xml:space="preserve">├── glossary.md</tspan></text>
+<text x="282.9" y="165" xml:space="preserve" style="fill: var(--muted)">vocabulary that crosses repository boundaries</text>
+<text x="16" y="187" xml:space="preserve"><tspan xml:space="preserve">├── infrastructure.md</tspan></text>
+<text x="282.9" y="187" xml:space="preserve" style="fill: var(--muted)">where things publish: pointers, never values</text>
+<text x="16" y="209" xml:space="preserve"><tspan xml:space="preserve">├── audiences.md</tspan></text>
+<text x="282.9" y="209" xml:space="preserve" style="fill: var(--muted)">who the work is for</text>
+<text x="16" y="231" xml:space="preserve"><tspan xml:space="preserve">├── voice.md</tspan></text>
+<text x="282.9" y="231" xml:space="preserve" style="fill: var(--muted)">how it talks in docs, READMEs, errors</text>
+<text x="16" y="253" xml:space="preserve"><tspan xml:space="preserve">├── roadmap.md</tspan></text>
+<text x="282.9" y="253" xml:space="preserve" style="fill: var(--muted)">what is in flight and what waits on what, every claim dated</text>
+<text x="16" y="275" xml:space="preserve"><tspan xml:space="preserve">├── reuse-map.md</tspan></text>
+<text x="282.9" y="275" xml:space="preserve" style="fill: var(--muted)">what is shared, what should be, what deliberately is not</text>
+<text x="16" y="297" xml:space="preserve"><tspan xml:space="preserve">├── repos/</tspan></text>
+<text x="16" y="319" xml:space="preserve"><tspan xml:space="preserve">│   ├── README.md</tspan></text>
+<text x="282.9" y="319" xml:space="preserve" style="fill: var(--muted)">the status board, one row per repository</text>
+<text x="16" y="341" xml:space="preserve"><tspan xml:space="preserve">│   ├── _template.md</tspan></text>
+<text x="16" y="363" xml:space="preserve"><tspan xml:space="preserve">│   ├── ankka.md</tspan></text>
+<text x="282.9" y="363" xml:space="preserve" style="fill: var(--muted)">one page of pointers per repository, never a restatement</text>
+<text x="16" y="385" xml:space="preserve"><tspan xml:space="preserve">│   └── ...</tspan></text>
+<text x="16" y="407" xml:space="preserve"><tspan xml:space="preserve">├── decisions/</tspan></text>
+<text x="16" y="429" xml:space="preserve"><tspan xml:space="preserve">│   ├── README.md</tspan></text>
+<text x="282.9" y="429" xml:space="preserve" style="fill: var(--muted)">when to log here, and where each repository&#x27;s own log is</text>
+<text x="16" y="451" xml:space="preserve"><tspan xml:space="preserve">│   ├── 0001-adopt-ankka-brain.md</tspan></text>
+<text x="282.9" y="451" xml:space="preserve" style="fill: var(--muted)">ADR shape: context, decision, alternatives, consequences</text>
+<text x="16" y="473" xml:space="preserve"><tspan xml:space="preserve">│   └── ...</tspan></text>
+<text x="16" y="495" xml:space="preserve"><tspan xml:space="preserve">└── workspace/</tspan></text>
+<text x="16" y="517" xml:space="preserve"><tspan xml:space="preserve">    ├── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="282.9" y="517" xml:space="preserve" style="fill: var(--muted)">copied to the directory above the checkouts</text>
+<text x="16" y="539" xml:space="preserve"><tspan xml:space="preserve">    └── README.md</tspan></text>
+<text x="282.9" y="539" xml:space="preserve" style="fill: var(--muted)">how to install it and the one approval prompt to expect</text>
+
+</svg>
+<figcaption>The brain, as checked out. Red is what Claude Code reads on its own; the rest is read on demand.</figcaption>
+</figure>
+
 The layout has stayed the same since:
 
 - `family.md`, the map. The thesis in a paragraph, a table of what each repository is and how it relates to the root, and the dependency and pinning chain: who consumes what from whom, pinned at which version, by what mechanism. This is the file I open most.
@@ -52,6 +101,52 @@ So the brain holds only six kinds of thing: the map, the decisions that cross re
 The wiring is the part that makes this more than a wiki. Claude Code loads a `CLAUDE.md` from every directory above the one a session starts in. So the family repositories are checked out as siblings under one directory, the brain among them, and that parent directory gets a `CLAUDE.md` of its own, copied from the brain's `workspace/` folder.
 
 That file is short. It says what the directory is, then imports three brain files so they are always on: the map, the principles and the status board. It then lists what to load on demand and when: conventions before writing code, the glossary for a term, the roadmap before planning, infrastructure before a release, audiences and voice before writing anything public, the repository's own file for the repository you are in. Then one line that matters: if the task is not in a family repository, ignore all of this.
+
+Above the workspace file is your own `~/.claude/CLAUDE.md`, which Claude Code reads for every session on the machine. So the walk a session makes is the one it always made: the repository's file, then each directory above it, then the user's. The brain adds nothing to that mechanism. It puts a file where the walk already passes.
+
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" role="img" style="font-family: var(--mono); font-size: 13px; fill: var(--ink)">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill: var(--red)"/></marker></defs>
+<text x="16" y="33" xml:space="preserve"><tspan xml:space="preserve">~/</tspan></text>
+<text x="16" y="55" xml:space="preserve"><tspan xml:space="preserve">├── .claude/</tspan></text>
+<text x="16" y="77" xml:space="preserve"><tspan xml:space="preserve">│   └── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="330.0" y="77" xml:space="preserve" style="fill: var(--muted)">your own, for every project</text>
+<text x="16" y="99" xml:space="preserve"><tspan xml:space="preserve">└── Documents/projects/thinkmorestupidless/</tspan></text>
+<text x="16" y="121" xml:space="preserve"><tspan xml:space="preserve">    ├── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="330.0" y="121" xml:space="preserve" style="fill: var(--muted)">the workspace file, from ankka-brain/workspace/</text>
+<text x="16" y="143" xml:space="preserve"><tspan xml:space="preserve">    │     @ankka-brain/family.md</tspan></text>
+<text x="330.0" y="143" xml:space="preserve" style="fill: var(--muted)">always on: the map</text>
+<text x="16" y="165" xml:space="preserve"><tspan xml:space="preserve">    │     @ankka-brain/principles.md</tspan></text>
+<text x="330.0" y="165" xml:space="preserve" style="fill: var(--muted)">always on: the principles</text>
+<text x="16" y="187" xml:space="preserve"><tspan xml:space="preserve">    │     @ankka-brain/repos/README.md</tspan></text>
+<text x="330.0" y="187" xml:space="preserve" style="fill: var(--muted)">always on: the status board</text>
+<text x="16" y="209" xml:space="preserve"><tspan xml:space="preserve">    ├── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.local.md</tspan></text>
+<text x="330.0" y="209" xml:space="preserve" style="fill: var(--muted)">the private half; never committed</text>
+<text x="16" y="231" xml:space="preserve"><tspan xml:space="preserve">    ├── ankka-brain/</tspan></text>
+<text x="16" y="253" xml:space="preserve"><tspan xml:space="preserve">    ├── ankka-brain-private/</tspan></text>
+<text x="16" y="275" xml:space="preserve"><tspan xml:space="preserve">    ├── ankka/</tspan></text>
+<text x="16" y="297" xml:space="preserve"><tspan xml:space="preserve">    │   └── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="330.0" y="297" xml:space="preserve" style="fill: var(--muted)">the repository&#x27;s own; authoritative inside it</text>
+<text x="16" y="319" xml:space="preserve"><tspan xml:space="preserve">    ├── ankka-flow/</tspan></text>
+<text x="16" y="341" xml:space="preserve"><tspan xml:space="preserve">    │   └── </tspan><tspan style="fill: var(--red); font-weight: 600">CLAUDE.md</tspan></text>
+<text x="16" y="363" xml:space="preserve"><tspan xml:space="preserve">    ├── ankka-reasoning/</tspan></text>
+<text x="16" y="385" xml:space="preserve"><tspan xml:space="preserve">    ├── satisfactory/</tspan></text>
+<text x="16" y="407" xml:space="preserve"><tspan xml:space="preserve">    └── ...</tspan></text>
+<text x="16" y="429" xml:space="preserve"></text>
+<text x="16" y="451" xml:space="preserve"><tspan xml:space="preserve">$ cd ankka &amp;&amp; claude</tspan></text>
+<text x="330.0" y="451" xml:space="preserve" style="fill: var(--muted)">starts in ankka/, reads 1, walks up to 2 and 2&#x27;, then 3</text>
+<circle cx="316.0" cy="292.5" r="8.5" style="fill: var(--red)"/>
+<text x="316.0" y="296.5" text-anchor="middle" style="fill: var(--cream); font-size: 11px; font-weight: 600">1</text>
+<circle cx="316.0" cy="116.5" r="8.5" style="fill: var(--red)"/>
+<text x="316.0" y="120.5" text-anchor="middle" style="fill: var(--cream); font-size: 11px; font-weight: 600">2</text>
+<circle cx="316.0" cy="204.5" r="8.5" style="fill: var(--red)"/>
+<text x="316.0" y="208.5" text-anchor="middle" style="fill: var(--cream); font-size: 11px; font-weight: 600">2'</text>
+<circle cx="316.0" cy="72.5" r="8.5" style="fill: var(--red)"/>
+<text x="316.0" y="76.5" text-anchor="middle" style="fill: var(--cream); font-size: 11px; font-weight: 600">3</text>
+<path d="M740 292.5 L740 72.5" style="stroke: var(--red); stroke-width: 1.5; fill: none" marker-end="url(#ah)"/><path d="M740 292.5 L730 292.5" style="stroke: var(--red); stroke-width: 1.5" /><path d="M740 204.5 L730 204.5" style="stroke: var(--red); stroke-width: 1.5" /><path d="M740 116.5 L730 116.5" style="stroke: var(--red); stroke-width: 1.5" /><path d="M740 72.5 L730 72.5" style="stroke: var(--red); stroke-width: 1.5" /><path d="M730 292.5 L730 292.5"/>
+</svg>
+<figcaption>The workspace. A session started in a repository reads that repository's CLAUDE.md, then every CLAUDE.md above it, then your own in ~/.claude/. The workspace file in the parent directory is where the brain hooks in.</figcaption>
+</figure>
 
 The effect is that a session started in any family repository knows the family before it reads the repository. It knows that ankka-reasoning pins ankka at 0.10.0 and wants the next release for person tokens. It knows that ankka-flow deliberately excludes pekko-http. It knows not to add a dependency that reintroduces a BSL licence, and that doing so would be a design change rather than a version bump. None of that had to be repeated in six places.
 
