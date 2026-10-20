@@ -73,7 +73,5 @@ Actions, so the site redraws minutes after a tag rather than hours:
 
 ## Not yet
 
-- The honest list page reads nothing yet; it will collect each repository's limitations page.
-- The about page is a placeholder.
 - Private repositories are named, never read, even with a token that could.
 - No mobile layout beyond the bars wrapping.

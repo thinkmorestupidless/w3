@@ -26,7 +26,6 @@ site:
   nav:
     - { label: families, href: "/#families" }
     - { label: writing, href: "/writing/" }
-    - { label: the honest list, href: "/honest/" }
     - { label: about, href: "/about/" }
   links:
     - { label: github, href: "https://github.com/thinkmorestupidless" }
@@ -54,7 +53,6 @@ families:
       - ankka-contrib
       - ankka-satisfaction
       - ankka-experiment-proposals
-      - cloudflow
     produced:
       - ankka.g8
       - ankka-action
@@ -122,6 +120,7 @@ families:
       - opta-data-schemae
       - premier-league-chat
       - sms-horse-tips
+      - may-thy-knife-chip-and-shatter
       - play-ws-betfair
 
   - slug: odds-and-ends
@@ -140,7 +139,6 @@ families:
       - PaintingByNumbersIFY
       - superset-langchain-demo
       - processing-sphere-particles
-      - may-thy-knife-chip-and-shatter
       - bennyhillmachine
       - jep-visualiser
 

@@ -7,9 +7,14 @@ import { site } from '../lib/config';
     <h1 class="display" style="margin: 0; font-size: clamp(48px, 7vw, 76px)">about</h1>
   </header>
   <div class="prose" style="max-width: 720px">
-    <p>[Who this account is, in a sentence.]</p>
-    <p>This site is rendered from GitHub. The families, their repositories, their releases and when they were last touched are read at build time; the writing is markdown in the site's own repository. When a family tags a release, the site redraws itself.</p>
+    <p>Trevor Burton-McCreadie. A software engineer in Durham, in the north east of England. thinkmorestupidless is the name the work has gone under since 2017, and this is the one page here about the person rather than the work.</p>
+    <p>For most of a decade the work was distributed systems on the JVM: actors, event sourcing and streams, on Akka, Lagom and Cloudflow, much of it built to show other people how. That decade is the long tail of this account, the sixty-odd repositories the home page counts and does not show, and the betting family, where the same tools were pointed at the Betfair exchange for fun.</p>
+    <p>Since September 2026 the work is ankka: Akka's component model, reimplemented in Scala 3 on Apache Pekko, so that nothing on the path a customer runs carries a BSL licence. It is a serverless platform for agentic AI on the actor model, and it proves itself by being its own customer: a hosted product, a constraint solver, a reasoning graph and the control plane are all ankka applications. voice, a civic participation project built with a co-creator, runs on it too.</p>
+    <p>There is a second company beside this one, eitheror, with a partner, where ankka has its first real-money customer. The two are kept apart on purpose; this site is only the first.</p>
+    <p>Everything here is public, and so are the brains: one small repository per family that holds the map, the pins, the decisions and the traps, written for people and agents alike. Most of the code on this account was written with an agent beside it, and the brains are how that stays honest.</p>
+    <h2>how this site works</h2>
+    <p>It is rendered from GitHub. The families, their repositories, their releases and when they were last touched are read at build time; the writing is markdown in the site's own repository. When a repository tags a release, the site redraws itself. The tool is <a href={`https://github.com/${site.owner}/${site.repo}`}>w3</a>, and it will render any account the same way.</p>
     <h2>what this is not</h2>
-    <p>[Your own honest list: what you do not do, have stopped doing, or are not good at, in the same register as every repo's limitations page.]</p>
+    <p>Not a product page: ankka's documentation is at <a href="https://docs.ankka.cloud">docs.ankka.cloud</a>. Not a consultancy; there is no services page and no newsletter. Not complete: the betting family has not moved since early 2025, the self-hosted ai family has no episode yet, and the older demos are counted, not shown. Every repository that is shown keeps its own honest list of what it does not do.</p>
   </div>
 </Base>
