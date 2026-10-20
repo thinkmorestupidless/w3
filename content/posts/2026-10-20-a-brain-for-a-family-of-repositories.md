@@ -6,7 +6,7 @@ kind: essay
 summary: "Why the cross-repository facts about a family of projects kept drifting, and the pattern that fixed it: one small repository per family that holds the map, the pins, the decisions and the conventions, wired into every agent session through a parent-directory CLAUDE.md."
 repos: [ankka-brain, voice-brain]
 minutes: 9
-draft: true
+draft: false
 ---
 
 Most of the code on this account was written with an agent beside me. That works well inside one repository, where a `CLAUDE.md` at the root tells the agent what the project is, how to build it and what has bitten before. It works much less well the moment the job spans more than one repository, and by the autumn of 2026 the ankka family had six of them.
